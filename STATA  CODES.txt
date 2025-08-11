@@ -1,0 +1,75 @@
+
+SAMPLE STATA CODES FOR HYPERTENSION PAPER
+
+Chi-Square Test
+tab NewAge hyperten, chi2 row
+
+
+// Filter the data to include only observations where race is Black (assuming Black is coded as 2)
+preserve
+keep if race == 2
+
+// Generate a pie chart for the variable disblty for only the Black race
+graph pie, over(disblty) plabel(_all percent)
+
+restore
+
+// Assuming the original age variable is named "age"
+gen NewAge = .
+replace NewAge = 1 if age >= 18 & age <= 30
+replace NewAge = 2 if age >= 31 & age <= 40
+replace NewAge = 3 if age >= 41 & age <= 50
+replace NewAge = 4 if age >= 51 & age <= 60
+replace NewAge = 5 if age > 60
+
+// Label the new variable
+label define NewAgeLabel 1 "18-30" 2 "31-40" 3 "41-50" 4 "51-60" 5 "Above 60"
+label values NewAge NewAgeLabel
+
+
+
+// Assuming the original income variable is named "income"
+gen NewIncome = .
+replace NewIncome = 1 if income < 1000
+replace NewIncome = 2 if income >= 1000 & income < 5000
+replace NewIncome = 3 if income >= 5000 & income < 10000
+replace NewIncome = 4 if income >= 10000 & income < 25000
+replace NewIncome = 5 if income >= 25000
+
+// Label the new variable
+label define NewIncomeLabel 1 "Under $1,000" 2 "$1,000-$4,999" 3 "$5,000-$9,999" 4 "$10,000-$24,999" 5 "$25,000 or more"
+label values NewIncome NewIncomeLabel
+
+Pie chart
+graph pie, over(disblty) plabel(_all percent)
+
+Bar Chart
+graph bar (count), over(disblty)
+
+GET INITIAL LEVELS OF VARIABLES
+tab hyperten, nolabel
+
+MAP TO DIFFERENT LEVELS
+
+HYPERTENSION
+* Map hyperten values: 2 -> 0 (no hypertension), 1 -> 1 (hypertension)
+recode hyperten (2=0) (1=1)
+
+* Check the recoding
+tab hyperten
+
+NEWAGE
+ * Map NewAge values: 1 -> 1, 2 -> 2, 3 -> 3, 4 -> 4, 5 -> 5
+
+recode NewAge (1=1) (2=2) (3=3) (4=4) (5=5)
+
+tab NewAge
+
+
+// Best Subset using stepwise selection criteria
+stepwise, pr(0.05): logistic hyper NewAge sex marital race unemp happy hlthstrt life satjob1 diabetes slpprblm stress satfin
+
+// Fit the best subset logistic regression model
+logistic hyper ib1.NewAge ib1.slpprblm ib2.diabetes
+
+
