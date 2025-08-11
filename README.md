@@ -1,0 +1,9 @@
+Background: Hypertension remains a significant public health concern in the United States, affecting a large portion of the adult population in the United States, with significant variations across different demographics. This study aims to model the predictors of hypertension using data from the 2022 General Social Survey (GSS).
+
+Methods: This study employs a cross-sectional design using data from the 2022 GSS, a nationally representative survey of individuals aged 18 years and older. Hypertension status was defined based on self-reported diagnosis. The study utilized logistic regression, random forest, and decision tree models to identify significant predictors of hypertension.
+
+Results: Logistic regression, random forest, and decision tree models consistently identified age, diabetes status, and sleep quality as significant predictors of hypertension. Specifically, older age, diabetes, and frequent trouble with sleep were associated with higher risks of hypertension. The logistic regression model showed that individuals aged above 60 years were almost seven times more likely to be hypertensive compared to those aged 18-30 years. Diabetic individuals were nearly four times more likely to develop hypertension than non-diabetic individuals. Poor sleep quality was also significantly associated with a higher risk of hypertension.
+
+Conclusion: The study provides valuable insights into the predictors of hypertension in the United States, emphasizing the roles of age, diabetes, and sleep quality. Addressing these factors through targeted public health interventions can significantly reduce the burden of hypertension. Healthcare providers should prioritize age-specific strategies, diabetes management, and sleep quality improvement to combat hypertension effectively.
+
+Keywords: Hypertension, Diabetes, Age, Trouble with Sleep, General Social Survey, USA.
